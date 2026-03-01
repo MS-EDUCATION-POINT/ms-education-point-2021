@@ -178,6 +178,21 @@ section {
     display: block;
 }
 
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: 1.1rem;
+    }
+}
+
 .nav-list {
     display: flex;
     gap: 30px;
