@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS Education Point | Admin Panel</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #07212c;
+            margin: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #07212c;
+            color: white;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-approve {
+            background-color: #4ade80;
+            margin-right: 5px;
+        }
+
+        .btn-reject {
+            background-color: #ef4444;
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .status-pending {
+            background-color: #fef08a;
+            color: #854d0e;
+        }
+
+        .status-approved {
+            background-color: #bbf7d0;
+            color: #166534;
+        }
+
+        .status-rejected {
+            background-color: #fecaca;
+            color: #991b1b;
+        }
+
+        #loginOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0b1e42;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .login-box input {
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-box button {
+            background: #07212c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Simple Password Protection Overlay -->
+    <div id="loginOverlay">
+        <div class="login-box">
+            <h2 style="color: #07212c;">Admin Access</h2>
+            <input type="password" id="adminPassword" placeholder="Enter Admin Password">
+            <br>
+            <button onclick="checkPassword()">Login</button>
+            <p id="loginError" style="color: red; display: none; margin-top: 10px;">Incorrect details</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1><i class="fa-solid fa-graduation-cap" style="color: #65a238;"></i> Admin Dashboard</h1>
+            <div>
+                <a href="index.html" style="color: #07212c; text-decoration: none; font-weight: bold;">Back to Site</a>
+            </div>
+        </div>
+
+        <h3>Pending Fee Payments</h3>
+        <p>Review the transaction IDs against your bank/UPI app before approving.</p>
+
+        <table id="paymentsTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Student Name</th>
+                    <th>Contact Info</th>
+                    <th>Class/Course</th>
+                    <th>Amount</th>
+                    <th>Txn ID</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="paymentsBody">
+                <tr>
+                    <td colspan="8" style="text-align:center;">Loading Firebase Data...</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Inquiries Section -->
+        <h3 style="margin-top: 50px;">New Online Admissions & Inquiries</h3>
+        <p>Review contact requests from the website.</p>
+
+        <table id="inquiriesTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Student Name</th>
+                    <th>Phone</th>
+                    <th>Course</th>
+                    <th>Message</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="inquiriesBody">
+                <tr>
+                    <td colspan="7" style="text-align:center;">Loading Inquiries...</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Fee Structure Section -->
+        <h3 style="margin-top: 50px;">Manage Fee Structure</h3>
+        <p>Update admission and monthly fees displayed on the website.</p>
+
+        <table id="feesTable">
+            <thead>
+                <tr>
+                    <th>Course / Class Name</th>
+                    <th>Admission Fee</th>
+                    <th>Monthly Fee</th>
+                    <th>Payment Deadline</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="feesBody">
+                <tr>
+                    <td colspan="5" style="text-align:center;">Loading Fees...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="admin.js"></script>
+
+</body>
+
+</html>
