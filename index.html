@@ -1,89 +1,479 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html lang="en">
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/12.10.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/12.10.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/12.10.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/12.10.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/12.10.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/12.10.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/12.10.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/12.10.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/12.10.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/12.10.0/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MS Education Point | Empowering Minds</title>
+  <meta name="description"
+    content="MS Education Point provides expert coaching for CBSE, Bihar Board, JNV, and Sainik School Entrance Exams. Foundation courses for Class 1 to 10.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    rel="stylesheet">
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+<body>
+  <!-- Header -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <img src="logo.jpg" alt="MS Education Point Logo" class="logo-img"
+          style="height: 55px; width: 55px; object-fit: contain; border-radius: 50%; border: 2px solid var(--primary-color);">
+      </a>
+      <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About Us</a></li>
+          <li><a href="#courses" class="nav-link">Courses</a></li>
+          <li><a href="#fees" class="nav-link">Fee Details</a></li>
+          <li><a href="#admissions" class="nav-link">Admissions</a></li>
+          <li><a href="#contact" class="nav-link">Contact Us</a></li>
+          <!-- ADMIN LOGIN BUTTON ADDED HERE -->
+          <li><a href="admin.html" class="btn btn-secondary"
+              style="padding: 8px 15px; font-size: 0.9rem; margin-left: 10px;">Admin Login <i class="fa-solid fa-lock"
+                style="margin-left:5px;"></i></a></li>
+        </ul>
+      </nav>
+      <div class="hamburger" id="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+  </header>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="container hero-container">
+      <div class="hero-content">
+        <span class="hero-badge">Welcome to MS Education Point</span>
+        <h1 class="hero-title">Empowering Minds,<br><span class="highlight">Shaping the Future</span></h1>
+        <p class="hero-subtitle">Discover a curriculum designed to foster academic growth, intellectual
+          curiosity, and rigorous exam preparation for CBSE, Bihar Board, Navodaya, and Sainik Schools.</p>
+        <div class="hero-buttons">
+          <a href="#courses" class="btn btn-primary">Explore Courses <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#admissions" class="btn btn-secondary">Apply Now</a>
+        </div>
+      </div>
+    </div>
+    <!-- Decorative Shape Divider -->
+    <div class="custom-shape-divider-bottom-1688647530">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path
+          d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C50.15,102.57,101.46,110.15,152.41,114.22,209.62,118.82,267.43,113.88,321.39,56.44Z"
+          class="shape-fill"></path>
+      </svg>
+    </div>
+  </section>
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
+  <!-- About Us Snapshot -->
+  <section class="about" id="about">
+    <div class="container about-container">
+      <div class="about-image">
+        <div class="image-wrapper">
+          <!-- Placeholder using a clean gradient or an educational graphic if needed -->
+          <div class="about-placeholder-img">
+            <i class="fa-solid fa-book-open-reader"></i>
+          </div>
+          <div class="experience-badge">
+            <span class="number">4+</span>
+            <span class="text">Years of<br>Excellence</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-content">
+        <h2 class="section-title">Nurturing the Leaders of Tomorrow</h2>
+        <div class="title-underline"></div>
+        <p class="about-text">At MS Education Point, our commitment to quality education and student success
+          stands at the forefront of everything we do. We provide a supportive, academic, and trustworthy
+          environment where students and parents feel welcomed.</p>
+        <p class="about-text">Our specialized faculty ensures strong core concepts, rigorous training, and
+          personalized attention, guiding our students toward excellent board results and competitive exam
+          success.</p>
+        <ul class="about-features">
+          <li><i class="fa-solid fa-check-circle"></i> Highly Qualified Faculties</li>
+          <li><i class="fa-solid fa-check-circle"></i> Comprehensive Study Material</li>
+          <li><i class="fa-solid fa-check-circle"></i> Regular Mock Tests</li>
+          <li><i class="fa-solid fa-check-circle"></i> Personalized Doubt Sessions</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="courses bg-light" id="courses">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="sub-title">Our Programs</span>
+        <h2 class="section-title">Comprehensive Courses</h2>
+        <div class="title-underline center"></div>
+        <p class="section-desc">Tailored educational programs focusing on deep conceptual understanding and
+          exam-oriented preparation.</p>
+      </div>
+
+      <div class="courses-grid">
+        <!-- Course 1 -->
+        <div class="course-card">
+          <div class="course-icon blue">
+            <i class="fa-solid fa-school"></i>
+          </div>
+          <div class="course-info">
+            <h3>CBSE Board (Class 1 to 10)</h3>
+            <p>Foundation courses aimed at building strong core concepts aligned with the latest CBSE
+              curriculum. We focus on holistic academic growth.</p>
+            <a href="#admissions" class="course-link">Enroll Now <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Course 2 -->
+        <div class="course-card featured">
+          <div class="featured-badge">Highly Recommended</div>
+          <div class="course-icon gold">
+            <i class="fa-solid fa-chalkboard-user"></i>
+          </div>
+          <div class="course-info">
+            <h3>Bihar Board (Class 1 to 10)</h3>
+            <p>Specialized curriculum tutoring. <strong>Class 10 Board Specials</strong> feature intensive
+              Mathematics preparation, dedicated mock tests, and comprehensive question bank solutions.
+            </p>
+            <a href="#admissions" class="course-link">Enroll Now <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Course 3 -->
+        <div class="course-card">
+          <div class="course-icon orange">
+            <i class="fa-solid fa-user-graduate"></i>
+          </div>
+          <div class="course-info">
+            <h3>JNV Entrance Prep</h3>
+            <p>Targeted coaching for the Jawahar Navodaya Vidyalaya Selection Test. We cover Mental Ability,
+              Arithmetic, and Language mastery comprehensively.</p>
+            <a href="#admissions" class="course-link">Enroll Now <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Course 4 -->
+        <div class="course-card">
+          <div class="course-icon dark">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="course-info">
+            <h3>Sainik School Prep</h3>
+            <p>Rigorous training for the All India Sainik Schools Entrance Examination (AISSEE). We prepare
+              students mentally and academically for excellence.</p>
+            <a href="#admissions" class="course-link">Enroll Now <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fee Structure Section -->
+  <section class="fees" id="fees">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="sub-title">Transparent Pricing</span>
+        <h2 class="section-title">Fee Structure</h2>
+        <div class="title-underline center"></div>
+        <p class="section-desc">We believe in quality education that is accessible and straightforward.</p>
+      </div>
+
+      <div class="fee-table-container">
+        <table class="fee-table">
+          <thead>
+            <tr>
+              <th>Class / Course Name</th>
+              <th>Admission Fee (One-time)</th>
+              <th>Monthly Fee</th>
+              <th>Payment Deadline</th>
+            </tr>
+          </thead>
+          <tbody id="feeTableBody">
+            <tr>
+              <td colspan="4" style="text-align:center;">Loading latest fee structure...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fee-payment-action">
+        <div class="payment-info">
+          <i class="fa-solid fa-shield-halved secure-icon"></i>
+          <div>
+            <h4>Secure Online Payment</h4>
+            <p>We accept all major UPI apps, Debit/Credit Cards, and Net Banking.</p>
+          </div>
+        </div>
+        <div class="fee-actions">
+          <button class="btn btn-primary btn-large" onclick="openPaymentModal()">
+            <i class="fa-solid fa-credit-card"></i> Pay Fees Online
+          </button>
+          <button class="btn btn-secondary btn-large" style="background: rgba(255,255,255,0.1);"
+            onclick="openStatusModal()">
+            <i class="fa-solid fa-file-pdf"></i> Check Status / Get Receipt
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admissions & Contact Section -->
+  <section class="contact bg-light" id="admissions">
+    <div class="container contact-container" id="contact">
+      <div class="contact-info">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="title-underline"></div>
+        <p class="contact-desc">Ready to shape your child's future? Contact us today for admissions, inquiries,
+          or any support you might need.</p>
+
+        <div class="contact-cards">
+          <div class="contact-card">
+            <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="details">
+              <h4>Physical Address (Branch 1)</h4>
+              <p>Taralahi Village Road, Near Durga Mandir,<br>
+                Infront of Taralahi Middle School,<br>
+                Village & Post: Taralahi,<br>
+                Dist: Darbhanga, State: Bihar - 846003</p>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="icon"><i class="fa-solid fa-phone"></i></div>
+            <div class="details">
+              <h4>Phone</h4>
+              <p>+91 8407856657</p>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+            <div class="details">
+              <h4>Email</h4>
+              <p>mseducationpoint2021@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-wrapper">
+        <h3 class="form-title">Online Admission Inquiry</h3>
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name">Student Name</label>
+            <input type="text" id="name" placeholder="Enter student's name" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="Enter mobile number" required>
+            </div>
+            <div class="form-group">
+              <label for="course">Interested Course</label>
+              <select id="course" required>
+                <option value="" disabled selected>Select a course</option>
+                <option value="cbse">CBSE Board (1-10)</option>
+                <option value="bihar">Bihar Board (1-10)</option>
+                <option value="jnv">JNV Entrance Prep</option>
+                <option value="sainik">Sainik School Prep</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Message / Queries</label>
+            <textarea id="message" rows="4" placeholder="Any specific requirements or questions?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Submit Inquiry <i
+              class="fa-solid fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col about-col">
+          <a href="#" class="footer-logo">
+            <img src="logo.png" alt="MS Education Point Logo" class="logo-img" style="filter: brightness(0) invert(1);">
+          </a>
+          <p>Empowering minds through quality education, dedicated faculty, and a comprehensive curriculum
+            designed for excellence.</p>
+          <div class="social-links">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col links-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#courses">Our Courses</a></li>
+            <li><a href="#fees">Fee Structure</a></li>
+            <li><a href="#admissions">Admissions</a></li>
+            <li><a href="admin.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col programs-col">
+          <h4>Our Programs</h4>
+          <ul>
+            <li><a href="#courses">CBSE Curriculum</a></li>
+            <li><a href="#courses">Bihar Board Special</a></li>
+            <li><a href="#courses">JNV Entrance</a></li>
+            <li><a href="#courses">Sainik School</a></li>
+            <li><a href="#courses">Class 10 Intensive</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col contact-col">
+          <h4>Contact Us</h4>
+          <p><i class="fa-solid fa-location-dot"></i> Taralahi Village, Darbhanga, Bihar - 846003</p>
+          <p><i class="fa-solid fa-phone"></i> +91 8407856657</p>
+          <p><i class="fa-solid fa-envelope"></i> mseducationpoint2021@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 MS Education Point. All rights reserved.</p>
+        <div class="bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Payment Modal -->
+  <div id="paymentModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closePaymentModal()">&times;</span>
+      <h3 class="form-title">Submit Online Payment Info</h3>
+      <p>Please make the payment using your UPI app to our Official UPI ID (<strong>peagi34@okhdfcbank</strong>)
+        or Scan the QR code,
+        then submit the details below for approval.</p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi%3A%2F%2Fpay%3Fpa%3Dpeagi34%40okhdfcbank%26pn%3DMS%20Education%20Point%26cu%3DINR"
+          alt="UPI QR Code Scanner"
+          style="max-width: 250px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+        <p style="font-weight: bold; color: var(--primary-color); margin-top: 10px; font-size: 1.1rem;">UPI ID:
+          peagi34@okhdfcbank</p>
+      </div>
+      <form id="paymentForm" class="contact-form" style="margin-top: 20px;">
+        <div class="form-group">
+          <label for="payName">Student Name</label>
+          <input type="text" id="payName" required placeholder="Enter student name">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="payPhone">Phone Number (WhatsApp)</label>
+            <input type="tel" id="payPhone" required placeholder="10-digit number">
+          </div>
+          <div class="form-group">
+            <label for="payEmail">Email Address</label>
+            <input type="email" id="payEmail" required placeholder="Student or Parent Email">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="payClass">Class / Course</label>
+            <select id="payClass" required>
+              <option value="Class 1 to 5">Class 1 to 5</option>
+              <option value="Class 5 to 8">Class 5 to 8</option>
+              <option value="Class 9 & 10">Class 9 & 10</option>
+              <option value="JNV Entrance">JNV Entrance</option>
+              <option value="Sainik School">Sainik School</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="payType">Payment Type</label>
+              <select id="payType" required>
+                <option value="Monthly Fee">Monthly Fee</option>
+                <option value="Admission Fee">Admission Fee</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="payMonth">Fee Month</label>
+              <select id="payMonth" required>
+                <option value="Not Applicable">Not Applicable</option>
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="payAmount">Amount Paid (₹)</label>
+              <input type="number" id="payAmount" required placeholder="e.g. 600">
+            </div>
+            <div class="form-group">
+              <label for="payTxnId">UPI Transaction ID</label>
+              <input type="text" id="payTxnId" required placeholder="12-digit UPI ref. number">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" id="submitPayBtn">Submit Payment
+            details</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Status / Receipt Modal -->
+  <div id="statusModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeStatusModal()">&times;</span>
+      <h3 class="form-title">Check Payment Status & Receipt</h3>
+      <p>Enter your Transaction ID to check if the admin has approved your payment and to download your PDF
+        receipt.</p>
+      <form id="statusForm" class="contact-form" style="margin-top: 20px;">
+        <div class="form-group">
+          <label for="checkTxnId">UPI Transaction ID</label>
+          <input type="text" id="checkTxnId" required placeholder="Enter Transaction ID used">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="checkStatusBtn">Check Status</button>
+      </form>
+      <div id="statusResult" style="margin-top:20px; text-align:center; display:none;">
+        <h4 id="statusText" style="font-size: 1.2rem; margin-bottom: 10px;"></h4>
+        <button id="downloadReceiptBtn" class="btn btn-secondary"
+          style="background:#4ade80; border:none; display:none;">
+          <i class="fa-solid fa-download"></i> Download PDF Receipt
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <script src="firebase-config.js"></script>
+  <script src="script.js"></script>
+  <script src="payment.js"></script>
+</body>
+
 </html>
