@@ -173,7 +173,7 @@ document.getElementById('downloadReceiptBtn')?.addEventListener('click', () => {
     doc.setFontSize(12);
     doc.setTextColor(100, 100, 100);
     doc.text("Taralahi Village, Darbhanga, Bihar - 846003", 105, 28, null, null, "center");
-    doc.text("Phone: +91 847856657 | Email: mseducation2021@gmail.com", 105, 34, null, null, "center");
+    doc.text("Phone: +91 8407856657 | Email: mseducationpoint2021@gmail.com", 105, 34, null, null, "center");
 
     // Divider Line
     doc.setDrawColor(101, 162, 56); // accent color
